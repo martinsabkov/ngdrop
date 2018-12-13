@@ -1,0 +1,32 @@
+<div class="container">
+<form [formGroup]="form" (ngSubmit)="login()">
+    <div class="form-group">
+       <label for="email">Email</label>
+     	<input type="email" class="form-control" formControlName="email">
+       <div *ngIf="form.controls.email.touched
+		&& !form.controls.email.valid" class="alert alert-danger">
+            Email is required
+       </div>
+    </div>
+    <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" formControlName="password">
+    <div *ngIf="form.controls.password.touched && form.controls.password.errors">
+        <div *ngIf="form.controls.password.errors.invalidLogin"
+class="alert alert-danger">
+            Email or password is invalid.
+        </div>
+        <div *ngIf="form.controls.password.errors.required"
+class="alert alert-danger">
+            Password is required.
+        </div>
+        <div *ngIf="form.controls.password.errors.cannotContainSpace"
+class="alert alert-danger">
+            Password cannot contain space.
+        </div>
+    </div>
+</div>
+
+    <button class="btn btn-primary" type="submit">Login</button>
+</form>
+</div>
